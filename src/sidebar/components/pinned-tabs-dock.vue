@@ -42,11 +42,14 @@ export default {
 
   computed: {
     pinnedTabs() {
+      let tabs
       if (State.pinnedTabsPosition === 'panel') {
-        return this.$store.getters.pinnedTabs.filter(t => t.panelId === this.panelId)
+        tabs = this.$store.getters.pinnedTabs.filter(t => t.panelId === this.panelId)
       } else {
-        return this.$store.getters.pinnedTabs
+        tabs = this.$store.getters.pinnedTabs
       }
+      this.$emit('calculatedTabs', tabs)
+      return tabs
     },
   },
 
