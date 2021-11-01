@@ -7,6 +7,7 @@
   @dblclick="onDoubleClick")
   PinnedDock(
     v-if="$store.state.pinnedTabsPosition === 'panel'"
+    @calculatedTabs="savePinnedTabs"
     :panel-type="panel.type"
     :panel-id="panel.id"
     :ctx="storeId")
@@ -68,6 +69,9 @@ export default {
   },
 
   methods: {
+    savePinnedTabs(tabs) {
+      this.pinnedTabs = tabs;
+    }
     scrollToTab(panelIndex, tabId) {
       if (panelIndex !== this.index) return
       if (!this.scrollBoxEl) return
